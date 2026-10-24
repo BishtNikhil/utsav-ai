@@ -41,7 +41,7 @@ https://github.com/BishtNikhil/utsav-ai
 
 ### Field 4: `Project Deployed Link *`
 ```text
-https://utsav-ai-app.run.app  (or your Vercel/Render link)
+https://utsav-93k9p4r0r-nikhil-s-projects-457f06bc.vercel.app
 ```
 
 ---
