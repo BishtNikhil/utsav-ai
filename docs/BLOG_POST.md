@@ -26,21 +26,11 @@ In real-world celebrations, changes never happen in isolation:
 
 To solve this, I designed a hybrid architecture: **Deterministic Constraint Engines for precision mathematics + Google Gemini 2.5 Flash for cultural synthesis and contextual reasoning.**
 
-```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                      UTSAV AI ARCHITECTURAL PIPELINE                   │
-├──────────────────────────┬──────────────────────────┬──────────────────┤
-│ 1. Dependency Engine     │ 2. Priority Trade-Offs   │ 3. Milestone DAG │
-│ • Guest Count ↔ Catering │ • User-ranked priorities │ • Topological    │
-│ • Venue Sq.Ft Check      │ • Intelligent scenarios  │   sequencing     │
-│ • 7% Contingency Shield  │   (no blind cuts)        │ • Auto-cascading │
-├──────────────────────────┴──────────────────────────┴──────────────────┤
-│ 4. Google Gemini 2.5 Flash Generative Layer                            │
-│ • Cultural atmosphere & moodboard generation                           │
-│ • Vendor quotation analysis & hidden fee uncovering                    │
-│ • Negotiation questionnaire generation                                 │
-└────────────────────────────────────────────────────────────────────────┘
-```
+### 🏛️ The UtsavAI Architectural Pipeline:
+* **1. Deterministic Dependency Engine:** Dynamic headcount-to-catering scaling, venue minimum checks (12 sq.ft/guest), and automatic 7% contingency reserve.
+* **2. Priority-Shielding Trade-Off Engine:** Contextual cost rationalization protecting top user-ranked priorities during budget cuts (no blind uniform slashing).
+* **3. Milestone DAG Scheduler:** Directed Acyclic Graph enforcing strict topological prerequisites and auto-cascading schedule compression.
+* **4. Google Gemini 2.5 Flash Generative Core:** Cultural atmosphere moodboards, vendor contract auditing (uncovering undisclosed 18% GST & overtime levies), and targeted negotiation scripts.
 
 ---
 
