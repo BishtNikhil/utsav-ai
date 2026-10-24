@@ -3,10 +3,31 @@ let currentPlan = null;
 
 // Initialize on DOM Ready
 document.addEventListener('DOMContentLoaded', () => {
+  initTheme();
   initDefaults();
   bindEvents();
   loadPreset('wedding_srinivas_scenario');
 });
+
+function initTheme() {
+  const savedTheme = localStorage.getItem('utsav-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+  updateThemeButton(savedTheme);
+}
+
+function updateThemeButton(theme) {
+  const icon = document.getElementById('theme-icon');
+  const text = document.getElementById('theme-text');
+  if (icon && text) {
+    if (theme === 'dark') {
+      icon.textContent = '☀️';
+      text.textContent = 'Light Mode';
+    } else {
+      icon.textContent = '🌙';
+      text.textContent = 'Dark Mode';
+    }
+  }
+}
 
 function initDefaults() {
   // Set default target date to 120 days from today
@@ -17,6 +38,18 @@ function initDefaults() {
 }
 
 function bindEvents() {
+  // Theme Toggle Button
+  const themeBtn = document.getElementById('btn-theme-toggle');
+  if (themeBtn) {
+    themeBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'light';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('utsav-theme', newTheme);
+      updateThemeButton(newTheme);
+    });
+  }
+
   // Tab Navigation
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
