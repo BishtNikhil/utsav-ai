@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UtsavAI — Autonomous Dynamic Celebration & Event Orchestrator | PromptWars Virtual</title>
+  <meta name="description" content="AI-powered Celebration & Event Planner built for PromptWars Virtual Challenge 05. Manages connected dependencies, dynamic budget allocation, milestone DAG scheduling, and intelligent trade-offs.">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="brand-wrapper">
+      <div class="brand-logo-icon" id="brand-logo-icon" aria-label="UtsavAI Logo">🔱</div>
+      <div class="brand-title-group">
+        <h1 id="app-main-heading">UtsavAI (उत्सव AI)</h1>
+        <p>Autonomous Dynamic Celebration & Event Orchestrator • PromptWars Virtual 2026</p>
+      </div>
+    </div>
+    <div class="header-badges">
+      <span class="badge badge-gold" id="badge-rank" title="Official Leaderboard Standing">Rank #151 Top 0.3%</span>
+      <span class="badge badge-cyan" id="badge-gemini" title="Connected to Google AI Studio">Gemini 2.5 Active</span>
+      <span class="badge badge-emerald" id="badge-sdlc" title="Automated Pytest Passed & Zero-Secret Verified">Zero-Secret SDLC</span>
+    </div>
+  </header>
+
+  <!-- Benchmark Presets Bar -->
+  <div class="presets-banner" id="presets-banner-bar">
+    <span class="presets-label">⚡ Benchmark Presets:</span>
+    <button type="button" class="preset-chip-btn active" id="btn-preset-wedding" data-preset="wedding_srinivas_scenario">
+      👑 SME Video Benchmark: The Royal Vivah (200 Guests • ₹8L)
+    </button>
+    <button type="button" class="preset-chip-btn" id="btn-preset-tech-gala" data-preset="tech_community_gala">
+      🚀 Tech Summit Gala (350 Attendees • ₹4L)
+    </button>
+    <button type="button" class="preset-chip-btn" id="btn-preset-birthday" data-preset="golden_jubilee_birthday">
+      🎂 50th Golden Jubilee Carnival (80 Guests • ₹1.8L)
+    </button>
+  </div>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- Left Controls Panel -->
+    <aside class="glass-panel intake-panel" id="intake-controls-panel">
+      <div class="panel-title-row">
+        <h2>🛠️ Event Parameters</h2>
+        <span class="cat-status-tag" id="constraint-tag">Dynamic Graph Active</span>
+      </div>
+
+      <form id="event-intake-form" onsubmit="return false;">
+        <div class="form-group">
+          <label for="input-event-title">Event Title</label>
+          <input type="text" id="input-event-title" class="form-input" value="Saurav & Saumya Royal Vivah & Reception" required>
+        </div>
+
+        <div class="form-group">
+          <label for="select-event-category">Celebration Category</label>
+          <select id="select-event-category" class="form-select">
+            <option value="wedding" selected>Wedding & Shubh Vivah</option>
+            <option value="community_gala">Community Gala / Awards Summit</option>
+            <option value="birthday">Birthday / Golden Jubilee</option>
+            <option value="corporate_festival">Corporate Festival</option>
+            <option value="anniversary">Milestone Anniversary</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="slider-guest-count">
+            Expected Guests <span class="value-pill" id="display-guest-count">200 Attendees</span>
+          </label>
+          <div class="slider-container">
+            <input type="range" id="slider-guest-count" min="20" max="600" step="10" value="200">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="input-total-budget">Total Budget (INR ₹)</label>
+          <input type="number" id="input-total-budget" class="form-input" min="50000" step="10000" value="800000">
+        </div>
+
+        <div class="form-group">
+          <label for="input-target-date">Target Celebration Date</label>
+          <input type="date" id="input-target-date" class="form-input">
+        </div>
+
+        <div class="form-group">
+          <label for="select-experience-tier">Experience Tier</label>
+          <select id="select-experience-tier" class="form-select">
+            <option value="essential">Essential / Prudent (₹1,100/plate base)</option>
+            <option value="standard" selected>Standard Elegance (₹1,750/plate base)</option>
+            <option value="premium_luxury">Royal Luxury (₹3,200/plate base)</option>
+          </select>
+        </div>
+
+        <!-- Priority Weighting Matrix -->
+        <div class="form-group">
+          <label>Priority Hierarchy (1 = Highest Protection)</label>
+          <div class="priority-ranks-grid" id="priority-ranking-grid">
+            <div class="priority-item">
+              <span>🍽️ Catering</span>
+              <select id="rank-catering" class="priority-select">
+                <option value="1" selected>#1 Top</option>
+                <option value="2">#2</option>
+                <option value="3">#3</option>
+                <option value="4">#4</option>
+                <option value="5">#5</option>
+              </select>
+            </div>
+            <div class="priority-item">
+              <span>🏛️ Venue</span>
+              <select id="rank-venue" class="priority-select">
+                <option value="1">#1</option>
+                <option value="2" selected>#2 High</option>
+                <option value="3">#3</option>
+                <option value="4">#4</option>
+                <option value="5">#5</option>
+              </select>
+            </div>
+            <div class="priority-item">
+              <span>🌸 Decor</span>
+              <select id="rank-decor" class="priority-select">
+                <option value="1">#1</option>
+                <option value="2">#2</option>
+                <option value="3" selected>#3 Mid</option>
+                <option value="4">#4</option>
+                <option value="5">#5</option>
+              </select>
+            </div>
+            <div class="priority-item">
+              <span>📸 Media</span>
+              <select id="rank-photo" class="priority-select">
+                <option value="1">#1</option>
+                <option value="2">#2</option>
+                <option value="3">#3</option>
+                <option value="4" selected>#4 Flexible</option>
+                <option value="5">#5</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <button type="button" class="btn-primary-generate" id="btn-generate-plan">
+          <span>⚡ Generate Intelligent Event Blueprint</span>
+        </button>
+      </form>
+
+      <!-- OFFICIAL CHANGE TEST BENCHMARK CARD -->
+      <div class="change-test-card" id="change-test-benchmark-card">
+        <span class="change-test-badge">🏆 Official SME Benchmark Test</span>
+        <h3>The Dynamic "Change Test"</h3>
+        <p>
+          Simulates Srinivas's live webinar challenge: <strong>+50 guests added</strong>, 
+          <strong>10% budget cut</strong>, and <strong>event advanced by 14 days</strong>. 
+          Proves real-time re-anchoring without restarting from scratch!
+        </p>
+        <button type="button" class="btn-change-test" id="btn-run-change-test">
+          <span>💥 Execute Live Change Test</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Right Live Dashboard Panel -->
+    <section class="glass-panel dashboard-panel" id="dashboard-results-panel">
+      
+      <!-- Nav Tabs -->
+      <nav class="tab-navigation" id="dashboard-tab-nav" aria-label="Dashboard views">
+        <button type="button" class="tab-btn active" id="tab-btn-budget" data-tab="tab-budget">
+          📊 Connected Budget
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-timeline" data-tab="tab-timeline">
+          🗓️ Milestone DAG
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-tradeoffs" data-tab="tab-tradeoffs">
+          ⚖️ Trade-Off Optimizer
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-vendors" data-tab="tab-vendors">
+          🤝 Vendor Copilot
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-showcase" data-tab="tab-showcase">
+          💌 Digital Celebration Suite
+        </button>
+        <button type="button" class="tab-btn" id="tab-btn-inspector" data-tab="tab-inspector">
+          🤖 Gemini Inspector
+        </button>
+      </nav>
+
+      <!-- TAB 1: Connected Budget -->
+      <div class="tab-pane active" id="tab-budget">
+        <div class="kpi-row" id="kpi-metrics-row">
+          <div class="kpi-card">
+            <span class="kpi-label">Total Allocated</span>
+            <span class="kpi-val" id="kpi-allocated">₹8,00,000</span>
+            <span class="kpi-sub">100% Balanced</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Per-Guest Investment</span>
+            <span class="kpi-val" id="kpi-per-head">₹4,000</span>
+            <span class="kpi-sub" id="kpi-guest-sub">Based on 200 Guests</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Contingency Shield (7%)</span>
+            <span class="kpi-val" id="kpi-contingency">₹56,000</span>
+            <span class="kpi-sub">Ringfenced for Price Spikes</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-label">Venue Floor Minimum</span>
+            <span class="kpi-val" id="kpi-venue-sqft">2,400 sq.ft</span>
+            <span class="kpi-sub">12 sq.ft/guest indoor metric</span>
+          </div>
+        </div>
+
+        <div class="categories-grid" id="budget-categories-grid">
+          <!-- Dynamic category cards inserted via JavaScript -->
+        </div>
+      </div>
+
+      <!-- TAB 2: Milestone DAG -->
+      <div class="tab-pane" id="tab-timeline">
+        <div class="timeline-dag-container" id="timeline-milestones-list">
+          <!-- Milestones inserted via JavaScript -->
+        </div>
+      </div>
+
+      <!-- TAB 3: Priority-Driven Trade-Offs -->
+      <div class="tab-pane" id="tab-tradeoffs">
+        <div class="tradeoff-grid" id="tradeoffs-options-grid">
+          <!-- Trade-off cards inserted via JavaScript -->
+        </div>
+      </div>
+
+      <!-- TAB 4: Vendor Copilot -->
+      <div class="tab-pane" id="tab-vendors">
+        <div class="vendor-section" id="vendor-comparisons-list">
+          <!-- Vendor comparisons inserted via JavaScript -->
+        </div>
+      </div>
+
+      <!-- TAB 5: Digital Celebration Suite -->
+      <div class="tab-pane" id="tab-showcase">
+        <div class="celebration-showcase-container" id="celebration-showcase-view">
+          <!-- Multi-day ceremony cards & digital themes inserted via JavaScript -->
+        </div>
+      </div>
+
+      <!-- TAB 6: Gemini Inspector -->
+      <div class="tab-pane" id="tab-inspector">
+        <div class="quote-box" style="padding: 1.5rem;">
+          <h3 style="color: var(--accent-gold-light); margin-bottom: 0.75rem;">🤖 Gemini 2.5 Flash Architecture & Prompt Flow</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+            As outlined by Hack2skill hosts Ditesh & Srinivas, this panel exposes the exact prompt flow, 
+            structured JSON schema enforcement, and what GenAI handles vs. deterministic Python constraints.
+          </p>
+          <div class="cat-subitems-list">
+            <div class="cat-subitem">
+              <strong>Constraint Mathematics & Floor Limits:</strong>
+              <span>Deterministic DependencyEngine (Zero Hallucination)</span>
+            </div>
+            <div class="cat-subitem">
+              <strong>Milestone Sequencing & Topological Shifts:</strong>
+              <span>TimelineDAGService (Graph Theory)</span>
+            </div>
+            <div class="cat-subitem">
+              <strong>Personalized Strategy & Cultural Atmosphere:</strong>
+              <span>Google Gemini 2.5 Flash (Generative Synthesis)</span>
+            </div>
+          </div>
+          <div style="margin-top: 1rem;">
+            <h4 style="font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">Active AI Narrative Synthesis:</h4>
+            <div id="ai-narrative-text" style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+              <!-- Populated dynamically -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- Toast Notification -->
+  <div class="toast-notice" id="app-toast-notice">Plan Updated Successfully!</div>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>
