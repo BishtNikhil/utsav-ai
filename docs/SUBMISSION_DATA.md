@@ -55,5 +55,5 @@ https://drive.google.com/file/d/15M74Su34BJiH71e9uMq9b0ZS7RQC802Z/view?usp=shari
 
 ### Field 6: `LinkedIn Post *`
 ```text
-https://www.linkedin.com/posts/nikhil-singh-bisht_promptwars-googlefordevelopers-genai-activity...
+https://www.linkedin.com/pulse/beyond-chatbots-engineering-utsavai-promptwars-05-nikhil-singh-bisht-01nfc
 ```
