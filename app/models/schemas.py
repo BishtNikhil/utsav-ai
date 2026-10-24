@@ -1,8 +1,16 @@
+"""
+UtsavAI Data Models and Schemas.
+
+Defines Pydantic v2 data models for event intake, dynamic budget summaries,
+milestone DAG networks, vendor quotation intelligence, and the SME Change Test.
+"""
+
 from enum import Enum
 from typing import Dict, List, Optional
 from pydantic import BaseModel, Field
 
 class EventCategory(str, Enum):
+    """Supported celebration and event archetypes."""
     WEDDING = "wedding"
     BIRTHDAY = "birthday"
     COMMUNITY_GALA = "community_gala"
@@ -10,18 +18,26 @@ class EventCategory(str, Enum):
     ANNIVERSARY = "anniversary"
 
 class ExperienceTier(str, Enum):
+    """Quality and hospitality execution tiers."""
     ESSENTIAL = "essential"
     STANDARD = "standard"
     PREMIUM_LUXURY = "premium_luxury"
 
 class PriorityRanking(BaseModel):
+    """
+    User-defined priority hierarchy (1 = highest protection, 5 = lowest).
+    Directly guides the Trade-Off Engine during budget cuts or overruns.
+    """
     catering: int = Field(default=1, ge=1, le=5, description="Priority rank (1=highest, 5=lowest)")
-    venue: int = Field(default=2, ge=1, le=5)
-    decor: int = Field(default=3, ge=1, le=5)
-    photography: int = Field(default=4, ge=1, le=5)
-    entertainment: int = Field(default=5, ge=1, le=5)
+    venue: int = Field(default=2, ge=1, le=5, description="Priority rank (1=highest, 5=lowest)")
+    decor: int = Field(default=3, ge=1, le=5, description="Priority rank (1=highest, 5=lowest)")
+    photography: int = Field(default=4, ge=1, le=5, description="Priority rank (1=highest, 5=lowest)")
+    entertainment: int = Field(default=5, ge=1, le=5, description="Priority rank (1=highest, 5=lowest)")
 
 class EventIntakeRequest(BaseModel):
+    """
+    Primary user intake payload capturing event constraints and priorities.
+    """
     title: str = Field(..., json_schema_extra={"example": "Saurav & Saumya Royal Vivah"})
     category: EventCategory = Field(default=EventCategory.WEDDING)
     guest_count: int = Field(..., ge=10, le=10000, json_schema_extra={"example": 200})
@@ -34,6 +50,9 @@ class EventIntakeRequest(BaseModel):
     special_notes: Optional[str] = Field(default="Intimate family celebration with deep cultural aesthetics.")
 
 class BudgetCategory(BaseModel):
+    """
+    Itemized budget allocation with transparent estimation labels.
+    """
     category_id: str
     category_name: str
     allocated_amount: float
@@ -45,6 +64,9 @@ class BudgetCategory(BaseModel):
     trade_off_flexibility: str = "Medium"
 
 class BudgetSummary(BaseModel):
+    """
+    Synthesized high-level financial health statement.
+    """
     total_budget: float
     total_allocated: float
     contingency_reserve: float
@@ -53,6 +75,9 @@ class BudgetSummary(BaseModel):
     is_balanced: bool
 
 class Milestone(BaseModel):
+    """
+    Milestone node in the Timeline Directed Acyclic Graph (DAG).
+    """
     milestone_id: str
     title: str
     category: str
@@ -65,12 +90,18 @@ class Milestone(BaseModel):
     contingency_action: str
 
 class TimelineDAG(BaseModel):
+    """
+    Complete Directed Acyclic Graph representing the event timeline.
+    """
     target_date: str
     total_milestones: int
     critical_path_milestones: List[str]
     milestones: List[Milestone]
 
 class TradeOffOption(BaseModel):
+    """
+    Actionable trade-off scenario generated during budget constraints.
+    """
     option_id: str
     title: str
     scenario_description: str
@@ -81,6 +112,9 @@ class TradeOffOption(BaseModel):
     recommended: bool = False
 
 class VendorQuote(BaseModel):
+    """
+    Normalized vendor proposal with hidden fees flagged.
+    """
     vendor_id: str
     vendor_name: str
     category: str
@@ -94,6 +128,9 @@ class VendorQuote(BaseModel):
     verified: bool = False
 
 class VendorComparison(BaseModel):
+    """
+    Side-by-side comparative analysis of competing vendors.
+    """
     category: str
     quotes: List[VendorQuote]
     recommended_vendor_id: str
@@ -101,6 +138,9 @@ class VendorComparison(BaseModel):
     negotiation_questions: List[str]
 
 class CeremonyScheduleItem(BaseModel):
+    """
+    Schedule item for multi-day celebration sequences.
+    """
     ceremony_name: str
     date_label: str
     time_window: str
@@ -110,9 +150,12 @@ class CeremonyScheduleItem(BaseModel):
     key_highlights: List[str]
 
 class DigitalInvitationTheme(BaseModel):
+    """
+    Aesthetic styling, color palette, and audio mood for invitations.
+    """
     theme_name: str
     aesthetic_style: str
-    palette: Dict[str, str] # e.g. {"primary": "#e07a5f", "secondary": "#f4f1de", "accent": "#3d405b"}
+    palette: Dict[str, str]
     typography_heading: str
     typography_body: str
     ambient_audio_track: str
@@ -120,6 +163,9 @@ class DigitalInvitationTheme(BaseModel):
     rsvp_link_slug: str
 
 class EventPlanResponse(BaseModel):
+    """
+    Complete synthesized event architecture response.
+    """
     plan_id: str
     intake: EventIntakeRequest
     budget_summary: BudgetSummary
@@ -131,6 +177,9 @@ class EventPlanResponse(BaseModel):
     created_at: str
 
 class ChangeTestRequest(BaseModel):
+    """
+    Payload for the official SME Change Test benchmark.
+    """
     current_plan: EventPlanResponse
     guest_count_delta: int = Field(default=50, description="+50 or -30 guests", json_schema_extra={"example": 50})
     budget_delta_pct: float = Field(default=-0.10, description="-0.10 means 10% budget cut", json_schema_extra={"example": -0.10})
@@ -138,6 +187,9 @@ class ChangeTestRequest(BaseModel):
     user_instruction: Optional[str] = Field(default="50 more guests added, budget cut by 10%, event moved 2 weeks earlier.")
 
 class ChangeTestResponse(BaseModel):
+    """
+    Re-anchored plan response proving dynamic adaptation without restarting.
+    """
     recalculated_plan: EventPlanResponse
     changes_detected: List[str]
     cascading_adjustments: List[str]
