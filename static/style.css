@@ -21,9 +21,9 @@
   --text-muted: #64748b;
   --text-gold: #f5d77f;
 
-  --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-sans: 'Outfit', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', 'Nirmala UI', 'Mangal', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-serif: 'Playfair Display', Georgia, serif;
-  --font-mono: 'Space Grotesk', monospace;
+  --font-mono: 'Space Grotesk', 'Consolas', monospace;
 
   --shadow-glow: 0 0 25px rgba(212, 175, 55, 0.2);
   --shadow-cyan: 0 0 25px rgba(0, 242, 254, 0.2);

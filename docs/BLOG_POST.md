@@ -89,6 +89,6 @@ Maintaining high code quality and security is paramount:
 Participating in PromptWars Virtual has been an incredible opportunity to push the boundaries of vibe-coding into robust, reliable software architecture. Thank you to Hack2skill and Google for Developers for organizing this challenge!
 
 🔗 **GitHub Repo:** https://github.com/BishtNikhil/utsav-ai  
-🔗 **Demo Video Stream:** [Google Drive 1080p Stream](https://drive.google.com/file/d/19anfcuBKtn3-5fRhFrAIGy8IYTDYLiZN/view?usp=sharing)  
+🔗 **Demo Video Stream:** [Google Drive 1080p Stream](https://drive.google.com/file/d/15M74Su34BJiH71e9uMq9b0ZS7RQC802Z/view?usp=sharing)  
 
 #GoogleForDevelopers #PromptWars #PromptWarsVirtual #GenAI #Gemini #FastAPI #CloudRun #Python #AIHackathon #SoftwareEngineering
