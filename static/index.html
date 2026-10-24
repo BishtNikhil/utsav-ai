@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>UtsavAI — Autonomous Dynamic Celebration & Event Orchestrator | PromptWars Virtual</title>
   <meta name="description" content="AI-powered Celebration & Event Planner built for PromptWars Virtual Challenge 05. Manages connected dependencies, dynamic budget allocation, milestone DAG scheduling, and intelligent trade-offs.">
-  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/style.css?v=2.1">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -251,9 +252,9 @@
 
       <!-- TAB 6: Gemini Inspector -->
       <div class="tab-pane" id="tab-inspector">
-        <div class="quote-box" style="padding: 1.5rem;">
-          <h3 style="color: var(--accent-gold-light); margin-bottom: 0.75rem;">🤖 Gemini 2.5 Flash Architecture & Prompt Flow</h3>
-          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 1rem;">
+        <div class="inspector-card">
+          <h3 class="inspector-title">🤖 Gemini 2.5 Flash Architecture & Prompt Flow</h3>
+          <p class="inspector-intro">
             As outlined by Hack2skill hosts Ditesh & Srinivas, this panel exposes the exact prompt flow, 
             structured JSON schema enforcement, and what GenAI handles vs. deterministic Python constraints.
           </p>
@@ -271,9 +272,9 @@
               <span>Google Gemini 2.5 Flash (Generative Synthesis)</span>
             </div>
           </div>
-          <div style="margin-top: 1rem;">
-            <h4 style="font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">Active AI Narrative Synthesis:</h4>
-            <div id="ai-narrative-text" style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6; background: rgba(0,0,0,0.4); padding: 1rem; border-radius: 8px; border: 1px solid var(--border-glass);">
+          <div class="ai-narrative-section">
+            <h4 class="ai-narrative-title">Active AI Narrative Synthesis:</h4>
+            <div id="ai-narrative-text" class="ai-narrative-box">
               <!-- Populated dynamically -->
             </div>
           </div>
@@ -286,6 +287,6 @@
   <!-- Toast Notification -->
   <div class="toast-notice" id="app-toast-notice">Plan Updated Successfully!</div>
 
-  <script src="/static/app.js"></script>
+  <script src="/static/app.js?v=2.1"></script>
 </body>
 </html>

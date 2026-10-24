@@ -245,15 +245,15 @@ function renderPlan(plan) {
         <span class="ms-days-before">${ms.days_before_event} Days Prior</span>
       </div>
       <div class="ms-body">
-        <h4>${ms.title} ${ms.is_critical_path ? '<span style="color:var(--accent-rose); font-size:0.75rem;">[CRITICAL PATH]</span>' : ''}</h4>
+        <h4>${ms.title} ${ms.is_critical_path ? '<span class="badge-critical-path">[CRITICAL PATH]</span>' : ''}</h4>
         <p>${ms.description}</p>
         <div class="ms-deps">
           ${ms.dependencies.map(d => `<span class="dep-chip">Depends on: ${d.replace('ms_', '')}</span>`).join('')}
-          <span class="dep-chip" style="color:var(--accent-emerald); border-color:var(--accent-emerald);">Fallback: ${ms.contingency_action}</span>
+          <span class="dep-chip fallback-chip">Fallback: ${ms.contingency_action}</span>
         </div>
       </div>
       <div>
-        <span class="badge ${ms.status === 'in_progress' ? 'badge-cyan' : 'badge-gold'}">${ms.status}</span>
+        <span class="badge ${ms.status === 'in_progress' ? 'badge-cyan' : 'badge-subtle'}">${ms.status}</span>
       </div>
     `;
     timelineContainer.appendChild(card);
@@ -270,12 +270,12 @@ function renderPlan(plan) {
         <h4>${opt.title}</h4>
         <span class="tradeoff-saving-badge">Saves ₹${Math.abs(opt.cost_delta).toLocaleString('en-IN')}</span>
       </div>
-      <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.5;">${opt.scenario_description}</p>
+      <p class="tradeoff-desc">${opt.scenario_description}</p>
       <div class="tradeoff-pros-cons">
         ${opt.pros.map(p => `<div class="pro-item">✓ <span>${p}</span></div>`).join('')}
         ${opt.cons.map(c => `<div class="con-item">⚠ <span>${c}</span></div>`).join('')}
       </div>
-      ${opt.recommended ? '<div style="margin-top:auto; font-size:0.75rem; color:var(--accent-gold); font-weight:700;">★ Recommended by UtsavAI Priority Engine</div>' : ''}
+      ${opt.recommended ? '<div class="tradeoff-rec-badge">★ Recommended by UtsavAI Priority Engine</div>' : ''}
     `;
     tradeoffsGrid.appendChild(card);
   });
@@ -287,21 +287,21 @@ function renderPlan(plan) {
     const block = document.createElement('div');
     block.className = 'vendor-comparison-block';
     block.innerHTML = `
-      <h3 style="color:#fff; font-size:1.1rem; margin-bottom:0.5rem;">🤝 ${vc.category} Quotation Analysis</h3>
+      <h3 class="vendor-block-title">🤝 ${vc.category} Quotation Analysis</h3>
       <div class="quotes-pair-grid">
         ${vc.quotes.map(q => `
           <div class="quote-box ${q.vendor_id === vc.recommended_vendor_id ? 'recommended-vendor' : ''}">
-            <div style="display:flex; justify-content:space-between; align-items:flex-start;">
-              <strong style="color:var(--accent-gold-light);">${q.vendor_name}</strong>
-              <span class="badge ${q.vendor_id === vc.recommended_vendor_id ? 'badge-emerald' : 'badge-gold'}">
+            <div class="quote-header">
+              <strong class="vendor-name">${q.vendor_name}</strong>
+              <span class="badge ${q.vendor_id === vc.recommended_vendor_id ? 'badge-emerald' : 'badge-subtle'}">
                 ${q.vendor_id === vc.recommended_vendor_id ? 'Best Fit' : 'Candidate'}
               </span>
             </div>
-            <div style="font-family:var(--font-mono); font-size:1.25rem; font-weight:700; color:#fff;">
-              ₹${q.total_cost.toLocaleString('en-IN')}
-              ${q.per_plate_or_unit ? `<span style="font-size:0.8rem; color:var(--text-muted);">(₹${q.per_plate_or_unit}/plate)</span>` : ''}
+            <div class="quote-cost-row">
+              <span class="quote-cost">₹${q.total_cost.toLocaleString('en-IN')}</span>
+              ${q.per_plate_or_unit ? `<span class="quote-unit">(₹${q.per_plate_or_unit}/plate)</span>` : ''}
             </div>
-            <div style="font-size:0.8rem; color:var(--text-secondary);">
+            <div class="quote-inclusions">
               <strong>Inclusions:</strong> ${q.inclusions.join(', ')}
             </div>
             ${q.hidden_costs_flagged.length > 0 ? `
@@ -313,9 +313,9 @@ function renderPlan(plan) {
           </div>
         `).join('')}
       </div>
-      <div style="margin-top:1rem; padding:0.75rem; background:rgba(0,0,0,0.3); border-radius:6px;">
-        <strong style="font-size:0.85rem; color:var(--accent-cyan);">💡 Negotiation Questions to Ask:</strong>
-        <ul style="font-size:0.8rem; color:var(--text-secondary); margin-left:1.25rem; margin-top:0.25rem;">
+      <div class="vendor-negotiation-box">
+        <strong class="negotiation-title">💡 Negotiation Questions to Ask:</strong>
+        <ul class="negotiation-list">
           ${vc.negotiation_questions.map(q => `<li>${q}</li>`).join('')}
         </ul>
       </div>
@@ -329,12 +329,12 @@ function renderPlan(plan) {
   const theme = plan.digital_theme;
   const showcaseHeader = document.createElement('div');
   showcaseHeader.innerHTML = `
-    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+    <div class="showcase-header-row">
       <div>
-        <h3 style="font-family:var(--font-serif); font-size:1.35rem; color:var(--accent-gold-light);">${theme.theme_name}</h3>
-        <p style="font-size:0.85rem; color:var(--text-secondary);">${theme.aesthetic_style} • RSVP Link: <code>/${theme.rsvp_link_slug}</code></p>
+        <h3 class="showcase-theme-title">${theme.theme_name}</h3>
+        <p class="showcase-theme-sub">${theme.aesthetic_style} • RSVP Link: <code>/${theme.rsvp_link_slug}</code></p>
       </div>
-      <span class="badge badge-gold">Interactive Invitation Suite Active</span>
+      <span class="badge badge-subtle">Interactive Invitation Suite Active</span>
     </div>
   `;
   showcaseContainer.appendChild(showcaseHeader);
