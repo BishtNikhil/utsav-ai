@@ -79,7 +79,7 @@ All without resetting user inputs or losing context!
 
 Maintaining high code quality and security is paramount:
 - **Zero-Secret Compliance:** Strict `.gitignore` enforcement; all Gemini API keys live in environment variables.
-- **Automated Test Suite:** 9 unit and integration tests passing in **0.83 seconds** using `pytest` and `httpx`.
+- **Automated Test Suite:** 14 unit and integration tests passing in **2.74 seconds** using `pytest` and `httpx`.
 - **Repository Size:** Fully optimized under **10 MB**, packaged with a production [Dockerfile](file:///e:/Promptwars2026/utsav_ai/Dockerfile) ready for Google Cloud Run.
 
 ---
