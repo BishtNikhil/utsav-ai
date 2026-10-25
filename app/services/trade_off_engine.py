@@ -1,3 +1,11 @@
+"""
+UtsavAI Trade-Off Engine (Priority-Weighted Optimization Pattern).
+
+Generates actionable financial trade-off scenarios when budgets are cut or headcounts expand.
+Protects top-ranked priorities (e.g. shielding culinary standards) while intelligently
+rationalizing lower-ranked categories, eliminating arbitrary blanket cuts.
+"""
+
 from typing import List
 from app.models.schemas import (
     EventIntakeRequest,
@@ -5,12 +13,15 @@ from app.models.schemas import (
     TradeOffOption,
 )
 
+
 class TradeOffEngine:
     """
     Intelligent Priority-Driven Trade-Off Optimizer.
-    When budgets are constrained, over-run by 20%, or requirements shift,
-    this engine generates informed, customized trade-offs rather than
-    blind blanket percentage cuts.
+
+    Generates three transparent scenarios:
+    1. Priority-Preserving Strategic Trim (shields #1 user priority).
+    2. Format & Vendor Quotation Rationalization (negotiates bundled services).
+    3. Intimate Guest Density & Per-Plate Elevation (curates attendee roster).
     """
 
     @classmethod
@@ -20,8 +31,15 @@ class TradeOffEngine:
         budget: BudgetSummary,
         target_savings: float = 0.0,
     ) -> List[TradeOffOption]:
-        """
-        Creates 3 distinct, actionable trade-off strategies tailored to the user's priority weights.
+        """Generates 3 actionable trade-off strategies aligned with user priority ranking.
+
+        Args:
+            intake: Validated event intake model containing priority weights.
+            budget: Computed budget summary with itemized category allocations.
+            target_savings: Required cost reduction in INR. If <= 0, defaults to 15% optimization.
+
+        Returns:
+            List[TradeOffOption]: 3 distinct trade-off options with pros, cons, and alignment scores.
         """
         total = intake.total_budget
         guests = intake.guest_count
@@ -36,7 +54,6 @@ class TradeOffEngine:
         # -------------------------------------------------------------
         # Strategy 1: Priority-Preserving Strategic Trim (Recommended)
         # -------------------------------------------------------------
-        # Identify top priority vs bottom priority
         top_priority_name = "Catering" if priorities.catering == 1 else "Venue"
         bottom_priority_name = "Decor" if priorities.decor >= 4 else "Entertainment"
 
@@ -98,25 +115,26 @@ class TradeOffEngine:
         suggested_guest_trim = max(15, int(guests * 0.15))
         new_guests = guests - suggested_guest_trim
         opt3_savings = round(suggested_guest_trim * (budget.total_allocated / guests) * 0.70, 2)
+        
         options.append(
             TradeOffOption(
-                option_id="opt_intimate_refine",
-                title=f"Intimate Gathering Optimization ({guests} -> {new_guests} Guests)",
+                option_id="opt_guest_density_trim",
+                title="Curated Guest Roster & Premium Per-Head Elevation",
                 scenario_description=(
-                    f"Trim guest count by {suggested_guest_trim} peripheral invites to host {new_guests} close friends "
-                    f"and family. Elevates per-guest hospitality with luxury seating, personalized favors, "
-                    f"and zero decor cuts."
+                    f"Rationalize guest count from {guests} to {new_guests} VIP attendees. "
+                    f"Yields immediate catering, seating, and bar savings while creating an ultra-luxurious, "
+                    f"intimate family atmosphere with personalized hospitality."
                 ),
                 cost_delta=-opt3_savings,
                 pros=[
-                    f"Allows ₹{round((total / new_guests), 2)} investment per attendee (ultra-premium vibe)",
-                    "Significantly reduced venue square-footage requirement (opens boutique heritage spaces)",
-                    "Dramatically lower day-of coordination stress",
+                    f"Per-guest hospitality investment increases significantly",
+                    "Enables high-touch personalized dining and bespoke gift hampers",
+                    "Reduces logistics, transport, and valet bottlenecks",
                 ],
                 cons=[
-                    f"Requires family consensus on trimming {suggested_guest_trim} invitations",
+                    "Requires strict RSVP curating and secondary guest tier deferrals",
                 ],
-                alignment_score=0.82,
+                alignment_score=0.84,
                 recommended=False,
             )
         )

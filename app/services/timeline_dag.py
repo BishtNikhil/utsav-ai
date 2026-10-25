@@ -1,16 +1,31 @@
+"""
+UtsavAI Timeline DAG Service (Directed Acyclic Graph & Topological Scheduling Pattern).
+
+Models celebration milestones as an interconnected dependency network rather than a
+flat checklist. Enforces critical paths, lead times, and auto-cascades milestone shifts
+when target celebration dates compress.
+"""
+
 from datetime import datetime, timedelta
-from typing import List, Optional
+from typing import List, Dict, Any, Optional
 from app.models.schemas import Milestone, TimelineDAG
+from app.core.exceptions import TimelineDependencyError
+
 
 class TimelineDAGService:
     """
     Directed Acyclic Graph (DAG) Milestone & Dependency Scheduler.
-    Models event management as an interconnected dependency network rather
-    than a flat, unprioritized checklist.
+
+    Enforces prerequisite constraints:
+    - Date & Venue Contract must be signed before Food Tasting or Invitations.
+    - Decor concept must be locked before Digital Invitations are finalized.
+    - RSVPs must be locked before Day-of Vendor Run-of-Show Handoff.
+
+    Enforces proportional compaction when celebration dates are advanced.
     """
 
     # Template milestones defined with their days_before_event lead times and prerequisite dependencies
-    MILESTONE_TEMPLATES = [
+    MILESTONE_TEMPLATES: List[Dict[str, Any]] = [
         {
             "id": "ms_lock_date_venue",
             "title": "Lock Celebration Date & Secure Venue Contract",
@@ -85,13 +100,23 @@ class TimelineDAGService:
 
     @classmethod
     def generate_timeline(cls, target_date_str: str) -> TimelineDAG:
-        """
-        Builds the complete DAG timeline anchored backwards from the target event date.
+        """Builds complete Directed Acyclic Graph anchored backwards from target date.
+
+        Args:
+            target_date_str: Target celebration date formatted as YYYY-MM-DD.
+
+        Returns:
+            TimelineDAG: Strongly typed DAG containing milestones and critical path identifiers.
+
+        Raises:
+            TimelineDependencyError: If date format cannot be parsed.
         """
         try:
             target_dt = datetime.strptime(target_date_str, "%Y-%m-%d")
-        except ValueError:
-            target_dt = datetime.now() + timedelta(days=120)
+        except ValueError as err:
+            raise TimelineDependencyError(
+                f"Invalid celebration date string '{target_date_str}', expected YYYY-MM-DD"
+            ) from err
 
         milestones: List[Milestone] = []
         critical_ids: List[str] = []
@@ -128,11 +153,25 @@ class TimelineDAGService:
 
     @classmethod
     def shift_timeline(cls, original_dag: TimelineDAG, days_delta: int) -> TimelineDAG:
+        """Dynamically shifts all milestone deadlines when the celebration date shifts.
+
+        Compacts milestone lead times proportionally if schedule is accelerated.
+
+        Args:
+            original_dag: Base TimelineDAG instance to re-anchor.
+            days_delta: Number of days to adjust (negative = earlier, positive = later).
+
+        Returns:
+            TimelineDAG: Re-sequenced and compressed DAG network.
+
+        Raises:
+            TimelineDependencyError: If original target date format is invalid.
         """
-        Dynamically shifts all milestone deadlines when the event date shifts earlier or later.
-        Validates dependency ordering and enforces accelerated lead times.
-        """
-        old_target = datetime.strptime(original_dag.target_date, "%Y-%m-%d")
+        try:
+            old_target = datetime.strptime(original_dag.target_date, "%Y-%m-%d")
+        except ValueError as err:
+            raise TimelineDependencyError(f"Invalid base target date '{original_dag.target_date}'") from err
+
         new_target = old_target + timedelta(days=days_delta)
         new_target_str = new_target.strftime("%Y-%m-%d")
 

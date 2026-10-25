@@ -1,17 +1,35 @@
+"""
+UtsavAI Vendor Copilot (Proposal Ingestion & Contract Auditor Pattern).
+
+Audits vendor proposals side-by-side, uncovering hidden fees (18% GST surcharges,
+overtime penalties, diesel generator levies) and formulating strategic negotiation
+scripts for organizers before signing binding contracts.
+"""
+
 from typing import List
 from app.models.schemas import VendorQuote, VendorComparison
+
 
 class VendorCopilotService:
     """
     Vendor Management & Quotation Analysis Copilot.
-    Structures vendor negotiations, uncovers hidden charges (taxes, overtime, generator),
-    and equips organizers with sharp qualification questions.
+
+    Provides transparent comparison intelligence:
+    - Side-by-side quote contrast with inclusions and exclusions.
+    - Automated detection of unquoted statutory taxes and overtime penalties.
+    - Tailored qualification questions for vendor negotiations.
     """
 
     @classmethod
-    def get_curated_comparisons(cls, guest_count: int, city: str) -> List[VendorComparison]:
-        """
-        Generates realistic, comparative quotation intelligence across core event categories.
+    def get_curated_comparisons(cls, guest_count: int, city: str = "Delhi NCR") -> List[VendorComparison]:
+        """Generates realistic, comparative quotation intelligence across core event categories.
+
+        Args:
+            guest_count: Expected headcount of celebration attendees.
+            city: Geographical market where vendor services are contracted.
+
+        Returns:
+            List[VendorComparison]: Curated comparative quotes with identified trade-offs.
         """
         comparisons: List[VendorComparison] = []
 
@@ -63,7 +81,7 @@ class VendorCopilotService:
                 "Uniformed valet water servers",
             ],
             hidden_costs_flagged=[
-                "Overtime fee of ₹3,000/hr if dinner extends past 11:30 PM",
+                "Overtime fee of ₹3,00,0/hr if dinner extends past 11:30 PM",
             ],
             verified=True,
         )
@@ -103,8 +121,8 @@ class VendorCopilotService:
                 "All unedited RAW images provided within 48 hours",
             ],
             exclusions=[
-                "Printed hardbound coffee table album (+₹18,000)",
-                "Same-day teaser edit for social media (+₹10,000)",
+                "Hardbound coffee table photo album (+₹15,000)",
+                "Pre-wedding studio shoot session",
             ],
             hidden_costs_flagged=[
                 "Travel & hotel stay reimbursement mandatory if outside Delhi NCR",
@@ -118,7 +136,7 @@ class VendorCopilotService:
             vendor_name="Katha Moments Visuals",
             category="Photography",
             base_quote=68000.0,
-            tax_and_fees=0.0, # Inclusive
+            tax_and_fees=0.0, # Micro-enterprise exemption
             total_cost=68000.0,
             per_plate_or_unit=None,
             inclusions=[
@@ -128,8 +146,8 @@ class VendorCopilotService:
                 "Covers up to 10 hours of shoot",
             ],
             exclusions=[
-                "Drone aerial filming (+₹12,000)",
-                "Pre-wedding studio portrait shoot",
+                "Drone aerial footage",
+                "Traditional physical video camera set",
             ],
             hidden_costs_flagged=[
                 "Overtime charged at ₹4,000 per hour beyond 10-hour mark",
@@ -139,17 +157,17 @@ class VendorCopilotService:
 
         comparisons.append(
             VendorComparison(
-                category="Photography & Media",
+                category="Cinematography & Visual Arts",
                 quotes=[photo_a, photo_b],
                 recommended_vendor_id="photo_vendor_02",
                 key_trade_offs=[
-                    "Katha Moments includes the physical album and 24h social reel at ₹68,000 flat.",
-                    "Lumière includes drone aerials but album is an extra ₹18,000.",
+                    "Katha Moments includes a premium hardbound album for ₹32,300 less total cost.",
+                    "Lumière includes an outdoor drone pilot, optimal for grand outdoor arrival venues.",
                 ],
                 negotiation_questions=[
-                    "Will the same senior cinematographers shown in the portfolio personally shoot our event?",
-                    "What is the exact penalty clause if the final video is delayed past 45 days?",
-                    "Can you bundle the drone operator at a 50% discount if we book this week?",
+                    "Can we swap the traditional photographer for a second candid camera lead?",
+                    "What is the exact penalty clause if teaser video delivery is delayed past 14 days?",
+                    "Do we retain 100% commercial and social media copyright on all high-res photos?",
                 ],
             )
         )

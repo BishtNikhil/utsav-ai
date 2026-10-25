@@ -1,3 +1,14 @@
+"""
+UtsavAI Gemini Service (Resilient Generative Adapter Pattern).
+
+Integrates Google Gemini 2.5 Flash / 1.5 Flash via Google AI Studio API for personalized
+atmosphere generation, cultural moodboard synthesis, and contextual negotiation strategies.
+
+Implements resilient zero-downtime offline fallback: if API keys are absent, quota is
+exhausted, or network latencies spike, the deterministic mathematical core guarantees
+sub-second responses without application failure.
+"""
+
 import json
 import logging
 from typing import Dict, Any, Optional
@@ -7,14 +18,18 @@ from app.models.schemas import EventIntakeRequest
 
 logger = logging.getLogger(__name__)
 
+
 class GeminiService:
     """
-    Client for Google Gemini 2.5 Flash / 1.5 Flash.
-    Provides generative reasoning for event aesthetics, customized trade-offs,
-    and prompt evolution while maintaining deterministic offline fallback.
+    Client adapter for Google Gemini 2.5 Flash generative models.
+
+    Provides high-level narrative synthesis while maintaining complete fault-tolerance:
+    - Structured prompt engineering with typed JSON schema enforcement.
+    - Zero-secret compliance: API keys are loaded exclusively from environment variables.
+    - Deterministic fallback synthesis for offline and zero-quota execution.
     """
 
-    SYSTEM_PROMPT = """
+    SYSTEM_PROMPT: str = """
 You are UtsavAI, an elite event planner and architectural budget optimizer collaborating with Google for Developers.
 You never output vague advice. You analyze connected event constraints:
 Guest Count <-> Catering Per Plate <-> Venue Minimum SqFt <-> Decor Scale <-> Timeline Milestones.
@@ -24,13 +39,22 @@ Highlight explicit trade-offs when budgets or deadlines tighten, rather than sug
 
     @classmethod
     async def generate_ai_narrative(cls, intake: EventIntakeRequest, budget_summary_dict: Dict[str, Any]) -> str:
-        """
-        Calls Gemini API if GEMINI_API_KEY is available, or generates a deterministic synthesis.
+        """Generates executive strategy narrative via Google Gemini or fallback engine.
+
+        Args:
+            intake: Validated event intake parameters.
+            budget_summary_dict: Dictionary containing computed budget categories and reserves.
+
+        Returns:
+            str: 3-paragraph executive narrative explaining theme, budget allocation, and risk plan.
         """
         if not config.has_gemini_key:
             return cls._generate_offline_synthesis(intake, budget_summary_dict)
 
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{config.gemini_model}:generateContent?key={config.gemini_api_key}"
+        url = (
+            f"https://generativelanguage.googleapis.com/v1beta/models/"
+            f"{config.gemini_model}:generateContent?key={config.gemini_api_key}"
+        )
         
         prompt = f"""
 Event: {intake.title} ({intake.category.value})
@@ -80,8 +104,14 @@ Provide an executive 3-paragraph strategy:
 
     @classmethod
     def _generate_offline_synthesis(cls, intake: EventIntakeRequest, budget_summary_dict: Dict[str, Any]) -> str:
-        """
-        Deterministic, domain-rich fallback narrative ensuring 100% uptime without an external API key.
+        """Deterministic domain-rich fallback narrative ensuring 100% uptime.
+
+        Args:
+            intake: Validated event intake parameters.
+            budget_summary_dict: Pre-calculated budget allocation dictionary.
+
+        Returns:
+            str: Structured domain-specific strategy blueprint.
         """
         top_p = "Catering" if intake.priority_weights.catering == 1 else "Venue"
         secondary_p = "Decor" if intake.priority_weights.decor <= 2 else "Photography"

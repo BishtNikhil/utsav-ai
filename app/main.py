@@ -12,7 +12,8 @@ from typing import Dict, Any, List
 from fastapi import FastAPI, Request, Response, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, JSONResponse
+from app.core.exceptions import UtsavAIException
 
 from app.config import config
 from app.models.schemas import (
@@ -38,6 +39,19 @@ app = FastAPI(
     redoc_url="/redoc",
 )
 
+# Custom Domain Exception Handler
+@app.exception_handler(UtsavAIException)
+async def utsav_domain_exception_handler(request: Request, exc: UtsavAIException) -> JSONResponse:
+    """Translates domain constraint exceptions into structured HTTP 400 responses."""
+    return JSONResponse(
+        status_code=400,
+        content={
+            "error_type": exc.__class__.__name__,
+            "message": exc.message,
+            "details": exc.details,
+        },
+    )
+
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
@@ -62,11 +76,20 @@ async def add_security_and_telemetry_headers(request: Request, call_next):
     response.headers["X-Response-Time-Ms"] = str(duration_ms)
     response.headers["X-Powered-By"] = "UtsavAI-FastAPI"
     
-    # Security Headers (OWASP)
+    # Security Headers (OWASP Enterprise Standard)
     response.headers["X-Content-Type-Options"] = "nosniff"
     response.headers["X-Frame-Options"] = "DENY"
     response.headers["X-XSS-Protection"] = "1; mode=block"
     response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+    response.headers["Strict-Transport-Security"] = "max-age=31536000; includeSubDomains"
+    response.headers["Permissions-Policy"] = "geolocation=(), microphone=(), camera=()"
+    response.headers["Content-Security-Policy"] = (
+        "default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; "
+        "img-src 'self' data: https:; "
+        "font-src 'self' https: fonts.gstatic.com; "
+        "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; "
+        "connect-src 'self' https:;"
+    )
     
     return response
 
