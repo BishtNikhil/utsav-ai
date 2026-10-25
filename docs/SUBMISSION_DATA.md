@@ -7,14 +7,14 @@ Use these pre-crafted, character-counted responses to fill in the Hack2skill sub
 ### Field 1: `Describe the changes/updates made in the deployed version *` (Max 1024 chars)
 
 ```text
-UtsavAI v1.0.0 is an autonomous celebration orchestrator built on dynamic constraint graphs rather than static prompts. Key deployed capabilities:
-1. Dynamic Dependency Engine: Connects headcount directly to catering allocations, indoor floor minimums (12 sq.ft/guest), and logistics with a ringfenced 7% contingency shield.
-2. The SME "Change Test" Benchmark: Directly solves the webinar challenge. Mid-plan shifts (+50 guests, -10% budget, 14 days earlier) dynamically re-anchor the graph in <1s without restarting from scratch.
-3. Priority-Shielding Trade-Offs: When budgets tighten, refuses blind uniform cuts; shields user-ranked priorities (protects gourmet dining while rationalizing decor).
-4. Milestone DAG: Topological dependency graph enforcing prerequisites (venue lock -> tasting -> invites) with auto-cascading schedule compression.
-5. Vendor Copilot: Analyzes competing quotes, uncovers hidden fees (18% GST, overtime, diesel), and crafts negotiation questions.
+UtsavAI Attempt 2 Engineering Optimization & Zero-Regression Upgrades:
+1. Enterprise Code Quality: Added domain exception hierarchy (UtsavAIException, ConstraintViolationError), strict type annotations across all engines, and Google-style docstrings documenting design patterns. Standardized pyproject.toml tooling.
+2. WCAG 2.4.1 Accessibility: Implemented keyboard skip link, dynamic ARIA live regions (aria-live="polite", aria-atomic="true") for real-time budget updates, explicit slider states, and high-contrast focus rings.
+3. Enterprise Security: Enforced strict OWASP Content-Security-Policy (CSP), Permissions-Policy, and HSTS headers with custom exception handlers returning unexposed error responses.
+4. Comprehensive Testing: Expanded automated test matrix from 14 to 22 passing tests covering edge cases, boundary inputs, security headers, and accessibility states in <2.5s.
+Zero Regressions: Core 100/100 scored budget math and DAG algorithms strictly preserved.
 ```
-*(Exact length: 976 characters • Strictly within 1024 character limit)*
+*(Exact length: 975 characters • Strictly within 1024 character limit)*
 
 ---
 
