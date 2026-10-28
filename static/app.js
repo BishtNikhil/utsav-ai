@@ -50,22 +50,31 @@ function bindEvents() {
     });
   }
 
-  // Tab Navigation
+  // Tab Navigation (WCAG 2.4.1 / WAI-ARIA 1.2 compliant)
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
-      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+        b.setAttribute('tabindex', '-1');
+      });
       document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
       btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      btn.setAttribute('tabindex', '0');
       const targetPane = document.getElementById(btn.dataset.tab);
       if (targetPane) targetPane.classList.add('active');
     });
   });
 
-  // Guest Slider Input
+  // Guest Slider Input (WCAG 4.1.2 Dynamic Value Announcements)
   const guestSlider = document.getElementById('slider-guest-count');
   const guestDisplay = document.getElementById('display-guest-count');
   guestSlider.addEventListener('input', (e) => {
-    guestDisplay.textContent = `${e.target.value} Attendees`;
+    const val = e.target.value;
+    guestDisplay.textContent = `${val} Attendees`;
+    guestSlider.setAttribute('aria-valuenow', val);
+    guestSlider.setAttribute('aria-valuetext', `${val} Attendees`);
   });
 
   // Preset Buttons

@@ -173,29 +173,29 @@
     <section class="glass-panel dashboard-panel" id="dashboard-results-panel">
       
       <!-- Nav Tabs -->
-      <nav class="tab-navigation" id="dashboard-tab-nav" aria-label="Dashboard views">
-        <button type="button" class="tab-btn active" id="tab-btn-budget" data-tab="tab-budget">
+      <nav class="tab-navigation" id="dashboard-tab-nav" aria-label="Celebration Planning Dashboard Views" role="tablist">
+        <button type="button" class="tab-btn active" id="tab-btn-budget" data-tab="tab-budget" role="tab" aria-selected="true" aria-controls="tab-budget" tabindex="0">
           📊 Connected Budget
         </button>
-        <button type="button" class="tab-btn" id="tab-btn-timeline" data-tab="tab-timeline">
+        <button type="button" class="tab-btn" id="tab-btn-timeline" data-tab="tab-timeline" role="tab" aria-selected="false" aria-controls="tab-timeline" tabindex="-1">
           🗓️ Milestone DAG
         </button>
-        <button type="button" class="tab-btn" id="tab-btn-tradeoffs" data-tab="tab-tradeoffs">
+        <button type="button" class="tab-btn" id="tab-btn-tradeoffs" data-tab="tab-tradeoffs" role="tab" aria-selected="false" aria-controls="tab-tradeoffs" tabindex="-1">
           ⚖️ Trade-Off Optimizer
         </button>
-        <button type="button" class="tab-btn" id="tab-btn-vendors" data-tab="tab-vendors">
+        <button type="button" class="tab-btn" id="tab-btn-vendors" data-tab="tab-vendors" role="tab" aria-selected="false" aria-controls="tab-vendors" tabindex="-1">
           🤝 Vendor Copilot
         </button>
-        <button type="button" class="tab-btn" id="tab-btn-showcase" data-tab="tab-showcase">
+        <button type="button" class="tab-btn" id="tab-btn-showcase" data-tab="tab-showcase" role="tab" aria-selected="false" aria-controls="tab-showcase" tabindex="-1">
           💌 Digital Celebration Suite
         </button>
-        <button type="button" class="tab-btn" id="tab-btn-inspector" data-tab="tab-inspector">
+        <button type="button" class="tab-btn" id="tab-btn-inspector" data-tab="tab-inspector" role="tab" aria-selected="false" aria-controls="tab-inspector" tabindex="-1">
           🤖 Gemini Inspector
         </button>
       </nav>
 
       <!-- TAB 1: Connected Budget -->
-      <div class="tab-pane active" id="tab-budget" role="tabpanel" aria-labelledby="tab-btn-budget">
+      <div class="tab-pane active" id="tab-budget" role="tabpanel" aria-labelledby="tab-btn-budget" tabindex="0">
         <div class="kpi-row" id="kpi-metrics-row" role="region" aria-label="Key Celebration Performance Metrics" aria-live="polite" aria-atomic="true">
           <div class="kpi-card">
             <span class="kpi-label">Total Allocated</span>
@@ -225,36 +225,36 @@
       </div>
 
       <!-- TAB 2: Milestone DAG -->
-      <div class="tab-pane" id="tab-timeline">
-        <div class="timeline-dag-container" id="timeline-milestones-list">
+      <div class="tab-pane" id="tab-timeline" role="tabpanel" aria-labelledby="tab-btn-timeline" tabindex="0">
+        <div class="timeline-dag-container" id="timeline-milestones-list" role="region" aria-label="Milestone Directed Acyclic Graph Schedule" aria-live="polite" aria-atomic="true">
           <!-- Milestones inserted via JavaScript -->
         </div>
       </div>
 
       <!-- TAB 3: Priority-Driven Trade-Offs -->
-      <div class="tab-pane" id="tab-tradeoffs">
-        <div class="tradeoff-grid" id="tradeoffs-options-grid">
+      <div class="tab-pane" id="tab-tradeoffs" role="tabpanel" aria-labelledby="tab-btn-tradeoffs" tabindex="0">
+        <div class="tradeoff-grid" id="tradeoffs-options-grid" role="region" aria-label="Priority-Shielded Trade-Off Scenarios" aria-live="polite" aria-atomic="true">
           <!-- Trade-off cards inserted via JavaScript -->
         </div>
       </div>
 
       <!-- TAB 4: Vendor Copilot -->
-      <div class="tab-pane" id="tab-vendors">
-        <div class="vendor-section" id="vendor-comparisons-list">
+      <div class="tab-pane" id="tab-vendors" role="tabpanel" aria-labelledby="tab-btn-vendors" tabindex="0">
+        <div class="vendor-section" id="vendor-comparisons-list" role="region" aria-label="Vendor Quotation and Negotiation Intelligence" aria-live="polite" aria-atomic="true">
           <!-- Vendor comparisons inserted via JavaScript -->
         </div>
       </div>
 
       <!-- TAB 5: Digital Celebration Suite -->
-      <div class="tab-pane" id="tab-showcase">
-        <div class="celebration-showcase-container" id="celebration-showcase-view">
+      <div class="tab-pane" id="tab-showcase" role="tabpanel" aria-labelledby="tab-btn-showcase" tabindex="0">
+        <div class="celebration-showcase-container" id="celebration-showcase-view" role="region" aria-label="Digital Celebration Itinerary and Theme Preview" aria-live="polite" aria-atomic="true">
           <!-- Multi-day ceremony cards & digital themes inserted via JavaScript -->
         </div>
       </div>
 
       <!-- TAB 6: Gemini Inspector -->
-      <div class="tab-pane" id="tab-inspector">
-        <div class="inspector-card">
+      <div class="tab-pane" id="tab-inspector" role="tabpanel" aria-labelledby="tab-btn-inspector" tabindex="0">
+        <div class="inspector-card" role="region" aria-label="Gemini Generative Architecture Inspector">
           <h3 class="inspector-title">🤖 Gemini 2.5 Flash Architecture & Prompt Flow</h3>
           <p class="inspector-intro">
             As outlined by Hack2skill hosts Ditesh & Srinivas, this panel exposes the exact prompt flow, 

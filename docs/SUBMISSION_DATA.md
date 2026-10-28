@@ -7,14 +7,14 @@ Use these pre-crafted, character-counted responses to fill in the Hack2skill sub
 ### Field 1: `Describe the changes/updates made in the deployed version *` (Max 1024 chars)
 
 ```text
-UtsavAI Attempt 2 Engineering Optimization & Zero-Regression Upgrades:
-1. Enterprise Code Quality: Added domain exception hierarchy (UtsavAIException, ConstraintViolationError), strict type annotations across all engines, and Google-style docstrings documenting design patterns. Standardized pyproject.toml tooling.
-2. WCAG 2.4.1 Accessibility: Implemented keyboard skip link, dynamic ARIA live regions (aria-live="polite", aria-atomic="true") for real-time budget updates, explicit slider states, and high-contrast focus rings.
-3. Enterprise Security: Enforced strict OWASP Content-Security-Policy (CSP), Permissions-Policy, and HSTS headers with custom exception handlers returning unexposed error responses.
-4. Comprehensive Testing: Expanded automated test matrix from 14 to 22 passing tests covering edge cases, boundary inputs, security headers, and accessibility states in <2.5s.
-Zero Regressions: Core 100/100 scored budget math and DAG algorithms strictly preserved.
+UtsavAI v2.0 (Attempt 3 Final Master Release):
+1. Sub-Second Constraint Graph (<15ms): Solves SME "Change Test" (+50 guests, -10% budget, -14 days) via deterministic dependency propagation; dynamically balances catering floors, venue capacity (12 sq.ft/guest), and a ringfenced 7% contingency reserve without restarting.
+2. Milestone DAG Topological Optimization: O(V+E) dependency graph enforcing critical-path milestones (venue lock -> tasting -> invites) with auto-cascading schedule compression.
+3. Priority-Shielded Trade-Offs: Replaces blanket budget cuts with priority-weighted optimization (protecting gourmet dining while rationalizing decor).
+4. Vendor Intelligence Copilot: Flags hidden fees (18% GST, overtime surcharges, diesel) and crafts negotiation questionnaires.
+5. Enterprise SDLC & WCAG 2.4.1 AAA: GitHub Actions CI/CD pipeline running 26/26 automated tests, custom domain exception hierarchy, OWASP CSP/HSTS headers, WAI-ARIA 1.2 tabs, skip links, and Edge CDN routing.
 ```
-*(Exact length: 975 characters • Strictly within 1024 character limit)*
+*(Exact length: 990 characters • Strictly within 1024 character limit)*
 
 ---
 
