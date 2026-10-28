@@ -80,6 +80,6 @@ Participating in PromptWars Virtual has been an incredible opportunity to push t
 
 🔗 **Live Application:** https://utsav-ai-alpha.vercel.app  
 🔗 **GitHub Repo:** https://github.com/BishtNikhil/utsav-ai  
-🔗 **Demo Video Stream:** [Google Drive 1080p Stream](https://drive.google.com/file/d/15M74Su34BJiH71e9uMq9b0ZS7RQC802Z/view?usp=sharing)  
+🔗 **Demo Video Stream:** [Google Drive 1080p Stream](https://drive.google.com/file/d/11DvNrbNvjFldP17cSiMT_r4xWwaiqxQ4/view?usp=sharing)  
 
 #GoogleForDevelopers #PromptWars #PromptWarsVirtual #GenAI #Gemini #FastAPI #CloudRun #Python #AIHackathon #SoftwareEngineering

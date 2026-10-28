@@ -33,7 +33,7 @@ Instead of static prompts, **UtsavAI models celebrations as an interconnected co
 
 🌐 **Live Application:** https://utsav-ai-alpha.vercel.app  
 💻 **GitHub Repository:** https://github.com/BishtNikhil/utsav-ai (0.38 MB)  
-🎥 **1080p Video Walkthrough:** https://drive.google.com/file/d/15M74Su34BJiH71e9uMq9b0ZS7RQC802Z/view?usp=sharing  
+🎥 **1080p Video Walkthrough:** https://drive.google.com/file/d/11DvNrbNvjFldP17cSiMT_r4xWwaiqxQ4/view?usp=sharing  
 
 Huge thanks to Google for Developers and Hack2skill for organizing this incredible challenge!
 
